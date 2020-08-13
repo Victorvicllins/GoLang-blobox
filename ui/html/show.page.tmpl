@@ -1,0 +1,20 @@
+{{template "base" .}}
+{{define "title"}} Blog #{{.Viccy.ID}}{{end}}
+
+{{define "main"}}
+  {{with .Viccy}}
+    <div class="blog">
+      <div class="metadata">
+        <strong>{{.Title}}</strong>
+        <span> >> {{.ID}}</span>
+      </div>
+      <img src="./static/img/catzss-sd.png" alt="cat-image">
+      <pre><code>{{.Content}}</code></pre>
+      <div class="metadata">
+        <time>Created: {{humanDate .Created}}</time>
+        <time>Expires: {{humanDate .Expires}}</time>
+      </div>
+
+    </div>
+  {{end}}
+{{end}}

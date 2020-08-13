@@ -1,0 +1,26 @@
+{{template "base" .}}
+
+{{define "title"}}Home{{end}}
+<!-- cito@wowcatholic.com -->
+{{define "main"}}
+<h2>Latest Blogs</h2>
+  {{if .BlogList}}
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>Created</th>
+      <th>ID</th>
+    </tr>
+    {{range .BlogList}}
+      <tr>
+        <td><a href="/blog/{{.ID}}">{{.Title}}</a></td>
+        <td>{{humanDate .Created}}</td>
+        <td># {{.ID}}</td>
+      </tr>
+    {{end}}
+  </table>
+  {{else}}
+    <p>Hey.,, There's nothing here yet.!</p>
+
+  {{end}}
+{{end}}

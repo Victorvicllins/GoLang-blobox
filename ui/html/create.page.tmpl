@@ -1,0 +1,36 @@
+{{template "base" .}}
+{{define "title"}}Create a Blog{{end}}
+{{define "main"}}
+  <form class="" action="/blog/create" method="POST">
+    <input type="hidden" name="csrf_token" value="{{.CSRFToken}}">
+    {{with .Form}}
+      <div class="">
+        <label for="">Title</label>
+        {{with .Errors.Get "title"}}
+          <label class="error">{{.}}</label>
+        {{end}}
+        <input type="text" name="title" value='{{.Get "title"}}'>
+      </div>
+      <div class="">
+        <label for="">Content</label>
+        {{with .Errors.Get "content"}}
+          <label class="error">{{.}}</label>
+        {{end}}
+        <textarea name="content">{{.Get "content"}}</textarea>
+      </div>
+      <div class="">
+        <label for="">Delete in:</label>
+        {{with .Errors.expires}}
+          <label class="error">{{.}}</label>
+        {{end}}
+        {{$exp := or (.Get "expires") "365"}}
+        <input type='radio' name='expires' value='365' {{if (eq $exp "365")}}checked{{end}}> One year
+        <input type='radio' name='expires' value='7' {{if (eq $exp "7")}}checked{{end}}> One Week
+        <input type='radio' name='expires' value='1' {{if (eq $exp "1")}}checked{{end}}> One Day
+      </div>
+      <div class="">
+        <input type="submit" name="" value="Publish Blog">
+      </div>
+    {{end}}
+  </form>
+{{end}}

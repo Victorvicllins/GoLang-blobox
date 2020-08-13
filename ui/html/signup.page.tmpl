@@ -1,0 +1,34 @@
+{{template "base" .}}
+{{define "title"}}Registeration{{end}}
+
+{{define "main"}}
+  <form class="" action="/user/register" method="POST" novalidate>
+    <input type="hidden" name="csrf_token" value="{{.CSRFToken}}">
+    {{with .Form}}
+      <div class="">
+        <label for="">Name:</label>
+        {{with .Errors.Get "name"}}
+          <label for="" class="error">{{.}}</label>
+        {{end}}
+        <input type="text" name="name" value="{{.Get "name"}}">
+      </div>
+      <div class="">
+        <label for="">Email:</label>
+        {{with .Errors.Get "email"}}
+          <label for="" class="error">{{.}}</label>
+        {{end}}
+        <input type="email" name="email" value="{{.Get "email"}}">
+      </div>
+      <div class="">
+        <label for="">Password:</label>
+        {{with .Errors.Get "password"}}
+          <label for="" class="error">{{.}}</label>
+        {{end}}
+        <input type="password" name="password">
+      </div>
+      <div class="">
+        <input type="submit" name="" value="Signup">
+      </div>
+    {{end}}
+  </form>
+{{end}}
